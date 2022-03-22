@@ -17,11 +17,11 @@ public class BrandService {
     private final BrandRepository brandRepository;
 
     @Transactional
-    public Brand save(BrandDTO brandDTO) {
+    public void save(BrandDTO brandDTO) {
         Brand brand = new Brand();
         brand.setId(brandDTO.getId());
         brand.setName(brandDTO.getName());
-        return brandRepository.save(brand);
+        brandRepository.save(brand);
     }
 
     public BrandDTO getById(Integer id) {
@@ -35,7 +35,7 @@ public class BrandService {
     }
 
     public List<BrandDTO> getAll() {
-        List<BrandDTO> lista = new ArrayList<BrandDTO>();
+        List<BrandDTO> lista = new ArrayList<>();
         brandRepository.findAll().forEach(it -> {
             BrandDTO brandDTO = new BrandDTO();
             brandDTO.setId(it.getId());
@@ -43,5 +43,10 @@ public class BrandService {
             lista.add(brandDTO);
         });
         return lista;
+    }
+
+    @Transactional
+    public void delete(Integer id){
+        brandRepository.deleteById(id);
     }
 }

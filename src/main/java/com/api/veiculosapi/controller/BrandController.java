@@ -30,4 +30,10 @@ public class BrandController {
     public List<BrandDTO> getAll() {
         return service.getAll();
     }
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable("id") Integer id) {
+        service.delete(id);
+    }
 }
+

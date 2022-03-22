@@ -38,13 +38,18 @@ public class CarService {
             CarDTO carDTO = new CarDTO();
             carDTO.setId(carRepository.findById(id).get().getId());
             carDTO.setName(carRepository.findById(id).get().getName());
+            carDTO.setModel(carRepository.findById(id).get().getModel());
+            carDTO.setYear(carRepository.findById(id).get().getYear());
+            carDTO.setColor(carRepository.findById(id).get().getColor());
+            carDTO.setCategory(carRepository.findById(id).get().getCategory());
+            carDTO.setBrandId(carRepository.findById(id).get().getBrand().getId());
             return carDTO;
         }
         return null;
     }
 
     public List<CarDTO> getAll() {
-        List<CarDTO> list = new ArrayList<CarDTO>();
+        List<CarDTO> list = new ArrayList<>();
         carRepository.findAll().forEach(it -> {
             CarDTO carDTO = new CarDTO();
             carDTO.setId(it.getId());
